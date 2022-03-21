@@ -14,9 +14,9 @@ CREATE TABLE [dbo].[Car](
 	[Model] [varchar](50) NULL,
 	[Year] [numeric](18, 0) NULL,
 	[NumberofSeats] [numeric](18, 0) NULL,
-	[Colour] [varchar](50) NULL,
+	[Color] [varchar](50) NULL,
 	[InsuranceNumber] [varchar](50) NULL,
-	[OdomoeterNumber] [numeric](18, 0) NULL,
+	[OdometerNumber] [numeric](18, 0) NULL,
 	[BID] [varchar](50) NULL,
 	[CarType] [varchar](50) NULL,
  CONSTRAINT [PK_Car] PRIMARY KEY CLUSTERED 
