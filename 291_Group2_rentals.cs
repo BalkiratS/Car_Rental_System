@@ -7,17 +7,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace _291_Group2
 {
+
     public partial class Form1 : Form
     {
+        public SqlConnection myConnection;
+        public SqlCommand myCommand;
+        public SqlDataReader myReader;
+
         public Form1()
         {
             InitializeComponent();
+
+            //////////////////////////////////
+            ///
+            String connectionString = "Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;";
+
+
+            /* Starting the connection */
+            /*  SqlConnection myConnection = new SqlConnection("user id=temp2;" + // Username
+                                         "password=adminadmin;" + // Password
+                                         "server=localhost;" + // IP for the server
+                                                               //"Trusted_Connection=yes;" +
+                                         "database=ConnectTutorial; " + // Database to connect to
+                                         "connection timeout=30"); // Timeout in seconds */
+
+            SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
+
+            try
+            {
+                myConnection.Open(); // Open connection
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection; // Link the command stream to the connection
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+                this.Close();
+            }
         }
 
-        private void CALCULATE_Click(object sender, EventArgs e)
+    private void CALCULATE_Click(object sender, EventArgs e)
         {
             
         }
@@ -200,6 +233,11 @@ namespace _291_Group2
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

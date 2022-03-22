@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Customer = new System.Windows.Forms.TabControl();
             this.Customers = new System.Windows.Forms.TabPage();
             this.Province = new System.Windows.Forms.TextBox();
@@ -179,6 +179,7 @@
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.Report = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -189,7 +190,6 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label48 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.Customer.SuspendLayout();
             this.Customers.SuspendLayout();
             this.Branch.SuspendLayout();
@@ -1924,6 +1924,17 @@
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Statistics";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(762, 52);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(109, 29);
+            this.checkBox4.TabIndex = 76;
+            this.checkBox4.Text = "Admin";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
             // Report
             // 
             this.Report.BackColor = System.Drawing.Color.GreenYellow;
@@ -2011,17 +2022,17 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(148, 527);
             this.chart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(651, 420);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -2037,17 +2048,6 @@
             this.label48.TabIndex = 0;
             this.label48.Text = "Pick a statistic";
             // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(762, 52);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(109, 29);
-            this.checkBox4.TabIndex = 76;
-            this.checkBox4.Text = "Admin";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -2057,6 +2057,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Customer.ResumeLayout(false);
             this.Customers.ResumeLayout(false);
             this.Customers.PerformLayout();
