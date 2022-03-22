@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-//testing editing files - vlad
 namespace _291_Group2
 {
     public partial class Form1 : Form

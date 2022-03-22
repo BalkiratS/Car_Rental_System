@@ -11,7 +11,6 @@ using System.Data.SqlClient;
 
 namespace _291_Group2
 {
-
     public partial class Form1 : Form
     {
         public SqlConnection myConnection;
@@ -21,10 +20,13 @@ namespace _291_Group2
         public Form1()
         {
             InitializeComponent();
-
+            ///////////////////////////////
+            /*operation.Items.Clear();
+            operation.Items.Add("Show all");
+            operation.Items.Add("Show with starting grade: ");*/
             //////////////////////////////////
             ///
-            String connectionString = "Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;";
+            String connectionString = "Server = LAPTOP-KI5F3RA4; Database = 291_group2; Trusted_Connection = yes;";
 
 
             /* Starting the connection */
@@ -50,7 +52,8 @@ namespace _291_Group2
             }
         }
 
-    private void CALCULATE_Click(object sender, EventArgs e)
+
+        private void CALCULATE_Click(object sender, EventArgs e)
         {
             
         }
@@ -229,7 +232,20 @@ namespace _291_Group2
 
         private void CreateBranch_Click(object sender, EventArgs e)
         {
+            myCommand.CommandText = "insert into Branch (BID, Description, Street_address1, Street_address2, City, Province, PostalCode, PhoneNumber) values " +
+                    "('" + BID.Text + "'" +
+                    ",'" + BDescription.Text + "'" +
+                    ",'" + BStreet_Address1.Text + "'" +
+                    ",'" + BStreet_Address2.Text + "'" +
+                    ",'" + BCity.Text + "'" +
+                    ",'" + BProvince.Text + "'" +
+                    ",'" + BPostalCode.Text + "'" +
+                    ",'" + BPhoneNumber.Text + "'" +
+                    ")";
 
+            MessageBox.Show(myCommand.CommandText);
+
+            myCommand.ExecuteNonQuery();
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
@@ -237,9 +253,92 @@ namespace _291_Group2
 
         }
 
+        private void Customers_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                //calculate age
+                DateTime dob = DateTime.Parse(DOB.Text);
+                int age = DateTime.Now.Subtract(dob).Days / 365;
+
+                //
+
+                //check which membership is checked, add to database
+                string membershipText = string.Empty;
+
+                if(MembershipS.Checked)
+                {
+                    membershipText = MembershipS.Text;
+                }
+                else if (MembershipG.Checked)
+                {
+                    membershipText = MembershipG.Text;
+                }
+
+                myCommand.CommandText = "insert into Customer (CID, Firstname, MiddleName, LastName, Phonenumber, DateofBirth, Street_address1, Street_address2, City, Province, PostalCode, Insurance,Membership) values " +
+                    "('"  + CID.Text + "'" +
+                    ",'" + FName.Text + "'" +
+                    ",'" + MName.Text + "'" +
+                    ",'" + LName.Text + "'" +
+                    ",'" + PhoneNumber.Text + "'" +
+                    ",'" + DOB.Text +"'"+
+                    ",'" + StreetAddress1.Text + "'" +
+                    ",'" + StreetAddress2.Text + "'" +
+                    ",'" + City.Text + "'" +
+                    ",'" + Province.Text + "'" +
+                    ",'" + PostalCode.Text + "'" +
+                    ",'" + Insurance.Text + "'" +
+                    ",'" + membershipText + "'" +
+                    ")";
+
+                MessageBox.Show(myCommand.CommandText);
+
+                myCommand.ExecuteNonQuery();
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.ToString(), "Error");
+            }
+        }
+
+        private void BID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            myCommand.CommandText = "insert into Car (VIN, Make, Model, Year, NumberofSeats, Color, InsuranceNumber, OdometerNumber, BID, CarType) values " +
+                    "('" + VIN.Text + "'" +
+                    ",'" + Make.Text + "'" +
+                    ",'" + Model.Text + "'" +
+                    "," + Year.Text +
+                    "," + Seats.Text  +
+                    ",'" + Color.Text + "'" +
+                    ",'" + CInsurance.Text + "'" +
+                    "," + Odometer.Text +
+                    ",'" + CBID.Text + "'" +
+                    ",'" + CCarType.Text + "'" +
+                    ")";
+
+            MessageBox.Show(myCommand.CommandText);
+
+            myCommand.ExecuteNonQuery();
         }
     }
 }
