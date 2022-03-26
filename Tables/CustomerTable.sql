@@ -1,7 +1,7 @@
 USE [291_group2]
 GO
 
-/****** Object:  Table [dbo].[Customer]    Script Date: 21-Mar-2022 10:21:20 AM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 25-Mar-2022 7:33:07 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -22,6 +22,7 @@ CREATE TABLE [dbo].[Customer](
 	[PostalCode] [varchar](50) NULL,
 	[Insurance] [varchar](50) NULL,
 	[Membership] [varchar](50) NULL,
+	[DriverLicense] [varchar](50) NULL,
  CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
 (
 	[CID] ASC
