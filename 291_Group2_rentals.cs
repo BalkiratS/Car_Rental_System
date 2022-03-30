@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace _291_Group2
             operation.Items.Add("Show with starting grade: ");*/
             //////////////////////////////////
             ///
-            String connectionString = "Server = LAPTOP-KI5F3RA4; Database = 291_group2; Trusted_Connection = yes;";
+            String connectionString = "Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;";
 
 
             /* Starting the connection */
@@ -50,8 +51,55 @@ namespace _291_Group2
                 MessageBox.Show(e.ToString(), "Error");
                 this.Close();
             }
-        }
 
+
+
+           
+            //----rentals pickup branch box--------------
+            SqlDataAdapter pickup_branch_adapter = new SqlDataAdapter("Select BID, (Street_address1 + ', ' + City) AS Location FROM Branch", myConnection);
+            DataTable dt = new DataTable();
+            pickup_branch_adapter.Fill(dt);
+
+            DataRow row = dt.NewRow();
+            row[0] = 0;
+            row[1] = "Please select";
+            dt.Rows.InsertAt(row, 0);
+
+            pickupbranchBox.DataSource = dt;
+            pickupbranchBox.DisplayMember = "Location";
+            pickupbranchBox.ValueMember = "BID";
+            //--------------------------------------------
+
+           
+            //----rentals dropoff branch box--------------
+            DataTable dt1 = new DataTable();
+            pickup_branch_adapter.Fill(dt1);
+
+            DataRow row1 = dt1.NewRow();
+            row1[0] = 0;
+            row1[1] = "Please select";
+            dt1.Rows.InsertAt(row1, 0);
+
+            dropoffbranchBox.DataSource = dt1;
+            dropoffbranchBox.DisplayMember = "Location";
+            dropoffbranchBox.ValueMember = "BID";
+            //--------------------------------------------
+
+            //----rentals car Type box----------------
+            SqlDataAdapter carType_adapter = new SqlDataAdapter("Select CarTypeID, Description FROM CarType", myConnection);
+            DataTable car_type_table = new DataTable();
+            carType_adapter.Fill(car_type_table);
+
+            DataRow car_type_defalut = car_type_table.NewRow();
+            car_type_defalut[0] = 0;
+            car_type_defalut[1] = "Please Select";
+            car_type_table.Rows.InsertAt(car_type_defalut, 0);
+
+            CarTypeBox.DataSource = car_type_table;
+            CarTypeBox.DisplayMember = "Description";
+            CarTypeBox.ValueMember = "CarTypeID";
+            //--------------------------------------
+        }
 
         private void CALCULATE_Click(object sender, EventArgs e)
         {
@@ -158,8 +206,9 @@ namespace _291_Group2
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void pickupbranchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+          
 
         }
 
@@ -339,6 +388,16 @@ namespace _291_Group2
             MessageBox.Show(myCommand.CommandText);
 
             myCommand.ExecuteNonQuery();
+        }
+
+        private void dropoffbranchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CarTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
