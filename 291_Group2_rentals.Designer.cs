@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Rentals = new System.Windows.Forms.TabControl();
             this.Customers = new System.Windows.Forms.TabPage();
             this.Province = new System.Windows.Forms.TextBox();
@@ -87,12 +87,19 @@
             this.BDescription = new System.Windows.Forms.TextBox();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.DisplayButton = new System.Windows.Forms.TabPage();
+            this.monthly_rate = new System.Windows.Forms.Label();
+            this.weekly_rate = new System.Windows.Forms.Label();
+            this.Daily_rate = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.available_car = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
+            this.price = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
@@ -837,12 +844,19 @@
             // DisplayButton
             // 
             this.DisplayButton.BackColor = System.Drawing.Color.PowderBlue;
+            this.DisplayButton.Controls.Add(this.monthly_rate);
+            this.DisplayButton.Controls.Add(this.weekly_rate);
+            this.DisplayButton.Controls.Add(this.Daily_rate);
+            this.DisplayButton.Controls.Add(this.label65);
+            this.DisplayButton.Controls.Add(this.label64);
+            this.DisplayButton.Controls.Add(this.available_car);
+            this.DisplayButton.Controls.Add(this.label63);
             this.DisplayButton.Controls.Add(this.label62);
             this.DisplayButton.Controls.Add(this.label41);
             this.DisplayButton.Controls.Add(this.label40);
             this.DisplayButton.Controls.Add(this.label61);
             this.DisplayButton.Controls.Add(this.label60);
-            this.DisplayButton.Controls.Add(this.label58);
+            this.DisplayButton.Controls.Add(this.price);
             this.DisplayButton.Controls.Add(this.label59);
             this.DisplayButton.Controls.Add(this.label57);
             this.DisplayButton.Controls.Add(this.label56);
@@ -892,6 +906,78 @@
             this.DisplayButton.Size = new System.Drawing.Size(1572, 1025);
             this.DisplayButton.TabIndex = 2;
             this.DisplayButton.Text = "Rentals";
+            // 
+            // monthly_rate
+            // 
+            this.monthly_rate.AutoSize = true;
+            this.monthly_rate.Location = new System.Drawing.Point(790, 681);
+            this.monthly_rate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.monthly_rate.Name = "monthly_rate";
+            this.monthly_rate.Size = new System.Drawing.Size(71, 25);
+            this.monthly_rate.TabIndex = 56;
+            this.monthly_rate.Text = "$0.00";
+            // 
+            // weekly_rate
+            // 
+            this.weekly_rate.AutoSize = true;
+            this.weekly_rate.Location = new System.Drawing.Point(599, 681);
+            this.weekly_rate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.weekly_rate.Name = "weekly_rate";
+            this.weekly_rate.Size = new System.Drawing.Size(71, 25);
+            this.weekly_rate.TabIndex = 55;
+            this.weekly_rate.Text = "$0.00";
+            // 
+            // Daily_rate
+            // 
+            this.Daily_rate.AutoSize = true;
+            this.Daily_rate.Location = new System.Drawing.Point(417, 681);
+            this.Daily_rate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.Daily_rate.Name = "Daily_rate";
+            this.Daily_rate.Size = new System.Drawing.Size(71, 25);
+            this.Daily_rate.TabIndex = 54;
+            this.Daily_rate.Text = "$0.00";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.ForeColor = System.Drawing.Color.Red;
+            this.label65.Location = new System.Drawing.Point(504, 681);
+            this.label65.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(96, 25);
+            this.label65.TabIndex = 53;
+            this.label65.Text = "Weekly:";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.ForeColor = System.Drawing.Color.Red;
+            this.label64.Location = new System.Drawing.Point(691, 681);
+            this.label64.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(102, 25);
+            this.label64.TabIndex = 52;
+            this.label64.Text = "Monthly:";
+            // 
+            // available_car
+            // 
+            this.available_car.FormattingEnabled = true;
+            this.available_car.Location = new System.Drawing.Point(453, 602);
+            this.available_car.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.available_car.Name = "available_car";
+            this.available_car.Size = new System.Drawing.Size(364, 33);
+            this.available_car.TabIndex = 51;
+            this.available_car.SelectedIndexChanged += new System.EventHandler(this.available_car_SelectedIndexChanged);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(72, 610);
+            this.label63.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(303, 25);
+            this.label63.TabIndex = 50;
+            this.label63.Text = "Choose from available Cars";
             // 
             // label62
             // 
@@ -946,15 +1032,15 @@
             this.label60.TabIndex = 45;
             this.label60.Text = "GST:";
             // 
-            // label58
+            // price
             // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(1442, 548);
-            this.label58.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(97, 25);
-            this.label58.TabIndex = 44;
-            this.label58.Text = "$150.50";
+            this.price.AutoSize = true;
+            this.price.Location = new System.Drawing.Point(1442, 548);
+            this.price.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.price.Name = "price";
+            this.price.Size = new System.Drawing.Size(97, 25);
+            this.price.TabIndex = 44;
+            this.price.Text = "$0.00";
             // 
             // label59
             // 
@@ -971,7 +1057,7 @@
             // 
             this.label57.AutoSize = true;
             this.label57.ForeColor = System.Drawing.Color.Red;
-            this.label57.Location = new System.Drawing.Point(178, 627);
+            this.label57.Location = new System.Drawing.Point(82, 681);
             this.label57.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(238, 25);
@@ -981,12 +1067,13 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(477, 627);
+            this.label56.ForeColor = System.Drawing.Color.Red;
+            this.label56.Location = new System.Drawing.Point(343, 681);
             this.label56.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(253, 25);
+            this.label56.Size = new System.Drawing.Size(72, 25);
             this.label56.TabIndex = 41;
-            this.label56.Text = "Daily, Weekly, Monthly";
+            this.label56.Text = "Daily:";
             this.label56.Click += new System.EventHandler(this.label56_Click);
             // 
             // label54
@@ -1013,10 +1100,10 @@
             // CarTypeBox
             // 
             this.CarTypeBox.FormattingEnabled = true;
-            this.CarTypeBox.Location = new System.Drawing.Point(482, 536);
+            this.CarTypeBox.Location = new System.Drawing.Point(453, 540);
             this.CarTypeBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CarTypeBox.Name = "CarTypeBox";
-            this.CarTypeBox.Size = new System.Drawing.Size(421, 33);
+            this.CarTypeBox.Size = new System.Drawing.Size(364, 33);
             this.CarTypeBox.TabIndex = 38;
             this.CarTypeBox.SelectedIndexChanged += new System.EventHandler(this.CarTypeBox_SelectedIndexChanged);
             // 
@@ -1026,14 +1113,14 @@
             this.label53.Location = new System.Drawing.Point(72, 548);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(341, 25);
+            this.label53.Size = new System.Drawing.Size(350, 25);
             this.label53.TabIndex = 37;
-            this.label53.Text = "Choose from available vehicles";
+            this.label53.Text = "Choose from available Car Type";
             // 
             // displaydtime
             // 
             this.displaydtime.AutoSize = true;
-            this.displaydtime.Location = new System.Drawing.Point(938, 862);
+            this.displaydtime.Location = new System.Drawing.Point(938, 917);
             this.displaydtime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displaydtime.Name = "displaydtime";
             this.displaydtime.Size = new System.Drawing.Size(137, 25);
@@ -1045,7 +1132,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(740, 862);
+            this.label24.Location = new System.Drawing.Point(740, 917);
             this.label24.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(147, 25);
@@ -1055,7 +1142,7 @@
             // displayddate
             // 
             this.displayddate.AutoSize = true;
-            this.displayddate.Location = new System.Drawing.Point(938, 812);
+            this.displayddate.Location = new System.Drawing.Point(938, 867);
             this.displayddate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displayddate.Name = "displayddate";
             this.displayddate.Size = new System.Drawing.Size(139, 25);
@@ -1067,7 +1154,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.ForeColor = System.Drawing.Color.Red;
-            this.label27.Location = new System.Drawing.Point(740, 812);
+            this.label27.Location = new System.Drawing.Point(740, 867);
             this.label27.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(149, 25);
@@ -1077,7 +1164,7 @@
             // displaydbranch
             // 
             this.displaydbranch.AutoSize = true;
-            this.displaydbranch.Location = new System.Drawing.Point(938, 762);
+            this.displaydbranch.Location = new System.Drawing.Point(938, 817);
             this.displaydbranch.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displaydbranch.Name = "displaydbranch";
             this.displaydbranch.Size = new System.Drawing.Size(165, 25);
@@ -1089,7 +1176,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.ForeColor = System.Drawing.Color.Red;
-            this.label29.Location = new System.Drawing.Point(740, 762);
+            this.label29.Location = new System.Drawing.Point(740, 817);
             this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(175, 25);
@@ -1099,7 +1186,7 @@
             // displayptime
             // 
             this.displayptime.AutoSize = true;
-            this.displayptime.Location = new System.Drawing.Point(240, 862);
+            this.displayptime.Location = new System.Drawing.Point(240, 917);
             this.displayptime.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displayptime.Name = "displayptime";
             this.displayptime.Size = new System.Drawing.Size(132, 25);
@@ -1112,7 +1199,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.ForeColor = System.Drawing.Color.Red;
-            this.label25.Location = new System.Drawing.Point(42, 862);
+            this.label25.Location = new System.Drawing.Point(42, 917);
             this.label25.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(141, 25);
@@ -1122,7 +1209,7 @@
             // displaypdate
             // 
             this.displaypdate.AutoSize = true;
-            this.displaypdate.Location = new System.Drawing.Point(240, 812);
+            this.displaypdate.Location = new System.Drawing.Point(240, 867);
             this.displaypdate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displaypdate.Name = "displaypdate";
             this.displaypdate.Size = new System.Drawing.Size(134, 25);
@@ -1135,7 +1222,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(42, 812);
+            this.label23.Location = new System.Drawing.Point(42, 867);
             this.label23.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(143, 25);
@@ -1145,7 +1232,7 @@
             // displaypbranch
             // 
             this.displaypbranch.AutoSize = true;
-            this.displaypbranch.Location = new System.Drawing.Point(240, 762);
+            this.displaypbranch.Location = new System.Drawing.Point(240, 817);
             this.displaypbranch.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.displaypbranch.Name = "displaypbranch";
             this.displaypbranch.Size = new System.Drawing.Size(160, 25);
@@ -1158,7 +1245,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(42, 762);
+            this.label21.Location = new System.Drawing.Point(42, 817);
             this.label21.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(169, 25);
@@ -1167,7 +1254,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1250, 773);
+            this.button2.Location = new System.Drawing.Point(1250, 828);
             this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(276, 114);
@@ -1190,7 +1277,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(36, 702);
+            this.label16.Location = new System.Drawing.Point(36, 757);
             this.label16.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(362, 30);
@@ -1199,7 +1286,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(456, 695);
+            this.button1.Location = new System.Drawing.Point(456, 750);
             this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 44);
@@ -1374,7 +1461,7 @@
             this.pickupbranchBox.Name = "pickupbranchBox";
             this.pickupbranchBox.Size = new System.Drawing.Size(364, 33);
             this.pickupbranchBox.TabIndex = 3;
-            this.pickupbranchBox.SelectedIndexChanged += new System.EventHandler(this.pickupbranchBox_SelectedIndexChanged);
+            this.pickupbranchBox.SelectedIndexChanged += new System.EventHandler(this.pickupbranchBox_SelectedValueChanged);
             // 
             // label12
             // 
@@ -2020,17 +2107,17 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(148, 527);
             this.chart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chart1.Name = "chart1";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(651, 420);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -2228,7 +2315,7 @@
         private System.Windows.Forms.ComboBox CarTypeBox;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label price;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -2239,6 +2326,13 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.ComboBox available_car;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label monthly_rate;
+        private System.Windows.Forms.Label weekly_rate;
+        private System.Windows.Forms.Label Daily_rate;
     }
 }
 

@@ -85,20 +85,7 @@ namespace _291_Group2
             dropoffbranchBox.ValueMember = "BID";
             //--------------------------------------------
 
-            //----rentals car Type box----------------
-            SqlDataAdapter carType_adapter = new SqlDataAdapter("Select CarTypeID, Description FROM CarType", myConnection);
-            DataTable car_type_table = new DataTable();
-            carType_adapter.Fill(car_type_table);
-
-            DataRow car_type_defalut = car_type_table.NewRow();
-            car_type_defalut[0] = 0;
-            car_type_defalut[1] = "Please Select";
-            car_type_table.Rows.InsertAt(car_type_defalut, 0);
-
-            CarTypeBox.DataSource = car_type_table;
-            CarTypeBox.DisplayMember = "Description";
-            CarTypeBox.ValueMember = "CarTypeID";
-            //--------------------------------------
+         
         }
 
         private void CALCULATE_Click(object sender, EventArgs e)
@@ -206,10 +193,41 @@ namespace _291_Group2
 
         }
 
-        private void pickupbranchBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void pickupbranchBox_SelectedValueChanged(object sender, EventArgs e)
         {
-          
+            //----rentals car Type box----------------
+            using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+            {
 
+                String selected_BID;
+                selected_BID = pickupbranchBox.SelectedValue.ToString();
+                int testing;
+
+                if(int.TryParse(selected_BID, out testing))
+                {
+                    SqlDataAdapter carType_adapter = new SqlDataAdapter("SELECT T.CarTypeID, T.Description from CarType T, Car C WHERE C.CarType = T.CarTypeID and C.BID = " + selected_BID, sqlConnection);
+                   
+                
+                    DataTable car_type_table = new DataTable();
+                    carType_adapter.Fill(car_type_table);
+
+                    DataRow car_type_defalut = car_type_table.NewRow();
+
+                    car_type_defalut[0] = 0;
+                    car_type_defalut[1] = "Please select";
+                    car_type_table.Rows.InsertAt(car_type_defalut, 0);
+
+                    CarTypeBox.DataSource = car_type_table;
+                    CarTypeBox.DisplayMember = "Description";
+                    CarTypeBox.ValueMember = "CarTypeID";
+
+                    
+                }
+                
+                
+                //--------------------------------------
+                
+            }
         }
 
         private void label14_Click(object sender, EventArgs e)
@@ -257,6 +275,35 @@ namespace _291_Group2
             displayddate.Visible = true;
             displaydtime.Text = (dropoffHour.Value.ToString() + ":" + dropoffMinute.Value.ToString() + " " + dropoffTimeAMPM.Text);
             displaydtime.Visible = true;
+
+            //----------------rates---------------------------------------------
+            TimeSpan rental_days = dropoffDate.Value - pickupDate.Value;
+            int total_days = Int32.Parse(rental_days.Days.ToString()) + 1;
+
+            int months = 0, weeks = 0, days = 0;
+
+            while (total_days >= 7)
+            {
+                if (total_days >= 30)
+                {
+                    months += total_days / 30;
+                    total_days %= 30;
+                }
+                else if (total_days >= 7)
+                {
+                    weeks += total_days / 7;
+                    total_days %= 7;
+                }
+            }
+            days = total_days;
+
+            float selected_daiy_rate = float.Parse(Daily_rate.Text.Replace("$",""));
+            float selected_weekly_rate = float.Parse(weekly_rate.Text.Replace("$", ""));
+            float selected_monthly_rate = float.Parse(monthly_rate.Text.Replace("$", ""));
+
+            price.Text = "$" + (months * selected_monthly_rate + weeks * selected_weekly_rate + days * selected_daiy_rate).ToString();
+
+           MessageBox.Show( months.ToString() + "*" + selected_monthly_rate.ToString() + ", " + weeks.ToString() + "*" + selected_weekly_rate.ToString() + ", " + days.ToString() + "*" + selected_daiy_rate.ToString());
         }
 
         private void label22_Click(object sender, EventArgs e)
@@ -396,6 +443,53 @@ namespace _291_Group2
         }
 
         private void CarTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //----rentals car box----------------
+            using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+            {
+
+                String selected_CarType;
+                selected_CarType = CarTypeBox.SelectedValue.ToString();
+                
+                int testing;
+
+                if (int.TryParse(selected_CarType, out testing))
+                {
+                    SqlDataAdapter car_adapter = new SqlDataAdapter("SELECT VIN, (Make + ' ' + Model) as car_info from Car WHERE CarType = " + selected_CarType, sqlConnection);
+
+
+                    DataTable car_table = new DataTable();
+                    car_adapter.Fill(car_table);
+
+                    DataRow car_defalut = car_table.NewRow();
+
+                    car_defalut[0] = 0;
+                    car_defalut[1] = "Please select";
+                    car_table.Rows.InsertAt(car_defalut, 0);
+
+                    available_car.DataSource = car_table;
+                    available_car.DisplayMember = "car_info";
+                    available_car.ValueMember = "VIN";
+
+                    //--------display rates of selected car type-----------
+                    string query = "SELECT DailyRate, WeeklyRate, MonthlyRate FROM CarType WHERE CarTypeID = " + selected_CarType;
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Daily_rate.Text = "$" + dr.GetString(0);
+                        weekly_rate.Text = "$" + dr.GetString(1);
+                        monthly_rate.Text = "$" + dr.GetString(2);
+                    }
+                }
+
+            }
+        }
+
+        private void available_car_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
