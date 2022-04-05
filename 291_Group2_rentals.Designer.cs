@@ -97,13 +97,13 @@
             this.label62 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
+            this.gst = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.price = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
+            this.total_charge = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.CarTypeBox = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
@@ -854,13 +854,13 @@
             this.DisplayButton.Controls.Add(this.label62);
             this.DisplayButton.Controls.Add(this.label41);
             this.DisplayButton.Controls.Add(this.label40);
-            this.DisplayButton.Controls.Add(this.label61);
+            this.DisplayButton.Controls.Add(this.gst);
             this.DisplayButton.Controls.Add(this.label60);
             this.DisplayButton.Controls.Add(this.price);
             this.DisplayButton.Controls.Add(this.label59);
             this.DisplayButton.Controls.Add(this.label57);
             this.DisplayButton.Controls.Add(this.label56);
-            this.DisplayButton.Controls.Add(this.label54);
+            this.DisplayButton.Controls.Add(this.total_charge);
             this.DisplayButton.Controls.Add(this.label55);
             this.DisplayButton.Controls.Add(this.CarTypeBox);
             this.DisplayButton.Controls.Add(this.label53);
@@ -982,7 +982,7 @@
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(1442, 627);
+            this.label62.Location = new System.Drawing.Point(1442, 624);
             this.label62.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(71, 25);
@@ -993,13 +993,13 @@
             // 
             this.label41.AutoSize = true;
             this.label41.ForeColor = System.Drawing.Color.Red;
-            this.label41.Location = new System.Drawing.Point(1150, 627);
+            this.label41.Location = new System.Drawing.Point(1150, 624);
             this.label41.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(249, 25);
             this.label41.TabIndex = 48;
             this.label41.Text = "*Late fee if applicable:";
-            this.label41.Visible = false;
+  
             // 
             // label40
             // 
@@ -1011,21 +1011,21 @@
             this.label40.TabIndex = 47;
             this.label40.Visible = false;
             // 
-            // label61
+            // gst
             // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(1442, 594);
-            this.label61.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(71, 25);
-            this.label61.TabIndex = 46;
-            this.label61.Text = "$7.53";
+            this.gst.AutoSize = true;
+            this.gst.Location = new System.Drawing.Point(1442, 586);
+            this.gst.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.gst.Name = "gst";
+            this.gst.Size = new System.Drawing.Size(71, 25);
+            this.gst.TabIndex = 46;
+            this.gst.Text = "$0.00";
             // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.Color.Red;
-            this.label60.Location = new System.Drawing.Point(1335, 594);
+            this.label60.Location = new System.Drawing.Point(1335, 586);
             this.label60.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(65, 25);
@@ -1038,7 +1038,7 @@
             this.price.Location = new System.Drawing.Point(1442, 548);
             this.price.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.price.Name = "price";
-            this.price.Size = new System.Drawing.Size(97, 25);
+            this.price.Size = new System.Drawing.Size(71, 25);
             this.price.TabIndex = 44;
             this.price.Text = "$0.00";
             // 
@@ -1076,21 +1076,21 @@
             this.label56.Text = "Daily:";
             this.label56.Click += new System.EventHandler(this.label56_Click);
             // 
-            // label54
+            // total_charge
             // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(1442, 669);
-            this.label54.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(97, 25);
-            this.label54.TabIndex = 40;
-            this.label54.Text = "$158.03";
+            this.total_charge.AutoSize = true;
+            this.total_charge.Location = new System.Drawing.Point(1442, 662);
+            this.total_charge.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.total_charge.Name = "total_charge";
+            this.total_charge.Size = new System.Drawing.Size(71, 25);
+            this.total_charge.TabIndex = 40;
+            this.total_charge.Text = "$0.00";
             // 
             // label55
             // 
             this.label55.AutoSize = true;
             this.label55.ForeColor = System.Drawing.Color.Red;
-            this.label55.Location = new System.Drawing.Point(1250, 669);
+            this.label55.Location = new System.Drawing.Point(1250, 662);
             this.label55.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(151, 25);
@@ -2310,14 +2310,14 @@
         private System.Windows.Forms.ComboBox CCarType;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label total_charge;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.ComboBox CarTypeBox;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label price;
         private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label gst;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label62;

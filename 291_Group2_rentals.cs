@@ -271,7 +271,7 @@ namespace _291_Group2
 
             displaydbranch.Text = dropoffbranchBox.Text;
             displaydbranch.Visible = true;
-            displayddate.Text = pickupDate.Value.ToString();
+            displayddate.Text = dropoffDate.Value.ToString();
             displayddate.Visible = true;
             displaydtime.Text = (dropoffHour.Value.ToString() + ":" + dropoffMinute.Value.ToString() + " " + dropoffTimeAMPM.Text);
             displaydtime.Visible = true;
@@ -301,9 +301,13 @@ namespace _291_Group2
             float selected_weekly_rate = float.Parse(weekly_rate.Text.Replace("$", ""));
             float selected_monthly_rate = float.Parse(monthly_rate.Text.Replace("$", ""));
 
-            price.Text = "$" + (months * selected_monthly_rate + weeks * selected_weekly_rate + days * selected_daiy_rate).ToString();
+            float f_price = ((float)months * selected_monthly_rate + (float)weeks * selected_weekly_rate + (float)days * selected_daiy_rate);
+            float f_gst = (float)(f_price * 0.05);
+            float f_total = (float)(f_price + f_gst);
 
-           MessageBox.Show( months.ToString() + "*" + selected_monthly_rate.ToString() + ", " + weeks.ToString() + "*" + selected_weekly_rate.ToString() + ", " + days.ToString() + "*" + selected_daiy_rate.ToString());
+            price.Text = "$" + (f_price).ToString(".00#");
+            gst.Text = "$" + (f_gst).ToString(".00#");
+            total_charge.Text = "$" + (f_total).ToString(".00#");
         }
 
         private void label22_Click(object sender, EventArgs e)
