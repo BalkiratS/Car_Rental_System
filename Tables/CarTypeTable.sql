@@ -1,7 +1,7 @@
 USE [291_group2]
 GO
 
-/****** Object:  Table [dbo].[CarType]    Script Date: 21-Mar-2022 10:19:56 AM ******/
+/****** Object:  Table [dbo].[CarType]    Script Date: 07-Apr-2022 4:07:33 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,11 +9,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[CarType](
-	[CarTypeID] [varchar](50) NOT NULL,
-	[Description] [varchar](50) NULL,
-	[DailyRate] [varchar](50) NULL,
-	[WeeklyRate] [varchar](50) NULL,
-	[MonthlyRate] [varchar](50) NULL,
+	[CarTypeID] [int] NOT NULL,
+	[Description] [varchar](50) NOT NULL,
+	[DailyRate] [decimal](18, 0) NULL,
+	[WeeklyRate] [decimal](18, 0) NULL,
+	[MonthlyRate] [decimal](18, 0) NULL,
  CONSTRAINT [PK_CarType] PRIMARY KEY CLUSTERED 
 (
 	[CarTypeID] ASC
