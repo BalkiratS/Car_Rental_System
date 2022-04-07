@@ -52,39 +52,6 @@ namespace _291_Group2
                 this.Close();
             }
 
-
-
-           
-            //----rentals pickup branch box--------------
-            SqlDataAdapter pickup_branch_adapter = new SqlDataAdapter("Select BID, (Street_address1 + ', ' + City) AS Location FROM Branch", myConnection);
-            DataTable dt = new DataTable();
-            pickup_branch_adapter.Fill(dt);
-
-            DataRow row = dt.NewRow();
-            row[0] = 0;
-            row[1] = "Please select";
-            dt.Rows.InsertAt(row, 0);
-
-            pickupbranchBox.DataSource = dt;
-            pickupbranchBox.DisplayMember = "Location";
-            pickupbranchBox.ValueMember = "BID";
-            //--------------------------------------------
-
-           
-            //----rentals dropoff branch box--------------
-            DataTable dt1 = new DataTable();
-            pickup_branch_adapter.Fill(dt1);
-
-            DataRow row1 = dt1.NewRow();
-            row1[0] = 0;
-            row1[1] = "Please select";
-            dt1.Rows.InsertAt(row1, 0);
-
-            dropoffbranchBox.DataSource = dt1;
-            dropoffbranchBox.DisplayMember = "Location";
-            dropoffbranchBox.ValueMember = "BID";
-            //--------------------------------------------
-
          
         }
 
@@ -360,6 +327,8 @@ namespace _291_Group2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the '_291_group2DataSet.Car' table. You can move, or remove it, as needed.
+            this.carTableAdapter.Fill(this._291_group2DataSet.Car);
 
         }
 
@@ -452,14 +421,15 @@ namespace _291_Group2
             using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
             {
 
-                String selected_CarType;
+                String selected_CarType, selected_BID;
                 selected_CarType = CarTypeBox.SelectedValue.ToString();
-                
+                selected_BID = pickupbranchBox.SelectedValue.ToString();
+
                 int testing;
 
                 if (int.TryParse(selected_CarType, out testing))
                 {
-                    SqlDataAdapter car_adapter = new SqlDataAdapter("SELECT VIN, (Make + ' ' + Model) as car_info from Car WHERE CarType = " + selected_CarType, sqlConnection);
+                    SqlDataAdapter car_adapter = new SqlDataAdapter("SELECT VIN, (Make + ' ' + Model) as car_info from Car WHERE CarType = " + selected_CarType + " and BID = " + selected_BID, sqlConnection);
 
 
                     DataTable car_table = new DataTable();
@@ -493,9 +463,66 @@ namespace _291_Group2
             }
         }
 
-        private void available_car_SelectedIndexChanged(object sender, EventArgs e)
+        private void Rentals_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Rentals.SelectedTab == Rentals.TabPages["rentals_tab"])
+            {
+                using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+                {
+                    //----rentals pickup branch box--------------
+                    SqlDataAdapter pickup_branch_adapter = new SqlDataAdapter("Select BID, (Street_address1 + ', ' + City) AS Location FROM Branch", sqlConnection);
+                    DataTable dt = new DataTable();
+                    pickup_branch_adapter.Fill(dt);
 
+                    DataRow row = dt.NewRow();
+                    row[0] = 0;
+                    row[1] = "Please select";
+                    dt.Rows.InsertAt(row, 0);
+
+                    pickupbranchBox.DataSource = dt;
+                    pickupbranchBox.DisplayMember = "Location";
+                    pickupbranchBox.ValueMember = "BID";
+                    //--------------------------------------------
+
+
+                    //----rentals dropoff branch box--------------
+                    DataTable dt1 = new DataTable();
+                    pickup_branch_adapter.Fill(dt1);
+
+                    DataRow row1 = dt1.NewRow();
+                    row1[0] = 0;
+                    row1[1] = "Please select";
+                    dt1.Rows.InsertAt(row1, 0);
+
+                    dropoffbranchBox.DataSource = dt1;
+                    dropoffbranchBox.DisplayMember = "Location";
+                    dropoffbranchBox.ValueMember = "BID";
+                    //--------------------------------------------
+                }
+            }
+
+            else if (Rentals.SelectedTab == Rentals.TabPages["Customers"])
+            {
+               
+            }
+
+            else if (Rentals.SelectedTab == Rentals.TabPages["Branch"])
+            {
+               
+            }
+            else if (Rentals.SelectedTab == Rentals.TabPages["car_tab"])
+            {
+               
+            }
+            else if (Rentals.SelectedTab == Rentals.TabPages["car_type_tab"])
+            {
+                
+            }
+            else if (Rentals.SelectedTab == Rentals.TabPages["stats_tab"])
+            {
+              
+            }
         }
+
     }
 }

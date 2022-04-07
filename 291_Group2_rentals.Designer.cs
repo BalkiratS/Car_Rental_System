@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -86,7 +87,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.BDescription = new System.Windows.Forms.TextBox();
             this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.DisplayButton = new System.Windows.Forms.TabPage();
+            this.rentals_tab = new System.Windows.Forms.TabPage();
             this.monthly_rate = new System.Windows.Forms.Label();
             this.weekly_rate = new System.Windows.Forms.Label();
             this.Daily_rate = new System.Windows.Forms.Label();
@@ -142,7 +143,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.TransactionID = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.car_tab = new System.Windows.Forms.TabPage();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.CCarType = new System.Windows.Forms.ComboBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -167,7 +168,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.car_type_tab = new System.Windows.Forms.TabPage();
             this.button6 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -185,7 +186,7 @@
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.stats_tab = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.Report = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
@@ -197,18 +198,27 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label48 = new System.Windows.Forms.Label();
+            this._291_group2DataSet = new _291_Group2._291_group2DataSet();
+            this.group2DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.carBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.carTableAdapter = new _291_Group2._291_group2DataSetTableAdapters.CarTableAdapter();
+            this.carBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Rentals.SuspendLayout();
             this.Customers.SuspendLayout();
             this.Branch.SuspendLayout();
-            this.DisplayButton.SuspendLayout();
+            this.rentals_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dropoffMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dropoffHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickupMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickupHour)).BeginInit();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.car_tab.SuspendLayout();
+            this.car_type_tab.SuspendLayout();
+            this.stats_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._291_group2DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.group2DataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // Rentals
@@ -216,10 +226,10 @@
             this.Rentals.AccessibleName = "Rentals";
             this.Rentals.Controls.Add(this.Customers);
             this.Rentals.Controls.Add(this.Branch);
-            this.Rentals.Controls.Add(this.DisplayButton);
-            this.Rentals.Controls.Add(this.tabPage1);
-            this.Rentals.Controls.Add(this.tabPage2);
-            this.Rentals.Controls.Add(this.tabPage3);
+            this.Rentals.Controls.Add(this.rentals_tab);
+            this.Rentals.Controls.Add(this.car_tab);
+            this.Rentals.Controls.Add(this.car_type_tab);
+            this.Rentals.Controls.Add(this.stats_tab);
             this.Rentals.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Rentals.Location = new System.Drawing.Point(64, 31);
             this.Rentals.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -227,6 +237,7 @@
             this.Rentals.SelectedIndex = 0;
             this.Rentals.Size = new System.Drawing.Size(1588, 1072);
             this.Rentals.TabIndex = 0;
+            this.Rentals.SelectedIndexChanged += new System.EventHandler(this.Rentals_SelectedIndexChanged);
             // 
             // Customers
             // 
@@ -841,71 +852,71 @@
             this.DescriptionLabel.TabIndex = 24;
             this.DescriptionLabel.Text = "Description";
             // 
-            // DisplayButton
+            // rentals_tab
             // 
-            this.DisplayButton.BackColor = System.Drawing.Color.PowderBlue;
-            this.DisplayButton.Controls.Add(this.monthly_rate);
-            this.DisplayButton.Controls.Add(this.weekly_rate);
-            this.DisplayButton.Controls.Add(this.Daily_rate);
-            this.DisplayButton.Controls.Add(this.label65);
-            this.DisplayButton.Controls.Add(this.label64);
-            this.DisplayButton.Controls.Add(this.available_car);
-            this.DisplayButton.Controls.Add(this.label63);
-            this.DisplayButton.Controls.Add(this.label62);
-            this.DisplayButton.Controls.Add(this.label41);
-            this.DisplayButton.Controls.Add(this.label40);
-            this.DisplayButton.Controls.Add(this.gst);
-            this.DisplayButton.Controls.Add(this.label60);
-            this.DisplayButton.Controls.Add(this.price);
-            this.DisplayButton.Controls.Add(this.label59);
-            this.DisplayButton.Controls.Add(this.label57);
-            this.DisplayButton.Controls.Add(this.label56);
-            this.DisplayButton.Controls.Add(this.total_charge);
-            this.DisplayButton.Controls.Add(this.label55);
-            this.DisplayButton.Controls.Add(this.CarTypeBox);
-            this.DisplayButton.Controls.Add(this.label53);
-            this.DisplayButton.Controls.Add(this.displaydtime);
-            this.DisplayButton.Controls.Add(this.label24);
-            this.DisplayButton.Controls.Add(this.displayddate);
-            this.DisplayButton.Controls.Add(this.label27);
-            this.DisplayButton.Controls.Add(this.displaydbranch);
-            this.DisplayButton.Controls.Add(this.label29);
-            this.DisplayButton.Controls.Add(this.displayptime);
-            this.DisplayButton.Controls.Add(this.label25);
-            this.DisplayButton.Controls.Add(this.displaypdate);
-            this.DisplayButton.Controls.Add(this.label23);
-            this.DisplayButton.Controls.Add(this.displaypbranch);
-            this.DisplayButton.Controls.Add(this.label21);
-            this.DisplayButton.Controls.Add(this.button2);
-            this.DisplayButton.Controls.Add(this.label17);
-            this.DisplayButton.Controls.Add(this.label16);
-            this.DisplayButton.Controls.Add(this.button1);
-            this.DisplayButton.Controls.Add(this.dropoffTimeAMPM);
-            this.DisplayButton.Controls.Add(this.dropoffMinute);
-            this.DisplayButton.Controls.Add(this.dropoffHour);
-            this.DisplayButton.Controls.Add(this.dropoffDate);
-            this.DisplayButton.Controls.Add(this.label19);
-            this.DisplayButton.Controls.Add(this.label20);
-            this.DisplayButton.Controls.Add(this.pickupTimeAMPM);
-            this.DisplayButton.Controls.Add(this.pickupMinute);
-            this.DisplayButton.Controls.Add(this.pickupHour);
-            this.DisplayButton.Controls.Add(this.pickupDate);
-            this.DisplayButton.Controls.Add(this.label18);
-            this.DisplayButton.Controls.Add(this.label15);
-            this.DisplayButton.Controls.Add(this.label14);
-            this.DisplayButton.Controls.Add(this.dropoffbranchBox);
-            this.DisplayButton.Controls.Add(this.label13);
-            this.DisplayButton.Controls.Add(this.pickupbranchBox);
-            this.DisplayButton.Controls.Add(this.label12);
-            this.DisplayButton.Controls.Add(this.TransactionID);
-            this.DisplayButton.Controls.Add(this.label11);
-            this.DisplayButton.Location = new System.Drawing.Point(8, 39);
-            this.DisplayButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.DisplayButton.Name = "DisplayButton";
-            this.DisplayButton.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.DisplayButton.Size = new System.Drawing.Size(1572, 1025);
-            this.DisplayButton.TabIndex = 2;
-            this.DisplayButton.Text = "Rentals";
+            this.rentals_tab.BackColor = System.Drawing.Color.PowderBlue;
+            this.rentals_tab.Controls.Add(this.monthly_rate);
+            this.rentals_tab.Controls.Add(this.weekly_rate);
+            this.rentals_tab.Controls.Add(this.Daily_rate);
+            this.rentals_tab.Controls.Add(this.label65);
+            this.rentals_tab.Controls.Add(this.label64);
+            this.rentals_tab.Controls.Add(this.available_car);
+            this.rentals_tab.Controls.Add(this.label63);
+            this.rentals_tab.Controls.Add(this.label62);
+            this.rentals_tab.Controls.Add(this.label41);
+            this.rentals_tab.Controls.Add(this.label40);
+            this.rentals_tab.Controls.Add(this.gst);
+            this.rentals_tab.Controls.Add(this.label60);
+            this.rentals_tab.Controls.Add(this.price);
+            this.rentals_tab.Controls.Add(this.label59);
+            this.rentals_tab.Controls.Add(this.label57);
+            this.rentals_tab.Controls.Add(this.label56);
+            this.rentals_tab.Controls.Add(this.total_charge);
+            this.rentals_tab.Controls.Add(this.label55);
+            this.rentals_tab.Controls.Add(this.CarTypeBox);
+            this.rentals_tab.Controls.Add(this.label53);
+            this.rentals_tab.Controls.Add(this.displaydtime);
+            this.rentals_tab.Controls.Add(this.label24);
+            this.rentals_tab.Controls.Add(this.displayddate);
+            this.rentals_tab.Controls.Add(this.label27);
+            this.rentals_tab.Controls.Add(this.displaydbranch);
+            this.rentals_tab.Controls.Add(this.label29);
+            this.rentals_tab.Controls.Add(this.displayptime);
+            this.rentals_tab.Controls.Add(this.label25);
+            this.rentals_tab.Controls.Add(this.displaypdate);
+            this.rentals_tab.Controls.Add(this.label23);
+            this.rentals_tab.Controls.Add(this.displaypbranch);
+            this.rentals_tab.Controls.Add(this.label21);
+            this.rentals_tab.Controls.Add(this.button2);
+            this.rentals_tab.Controls.Add(this.label17);
+            this.rentals_tab.Controls.Add(this.label16);
+            this.rentals_tab.Controls.Add(this.button1);
+            this.rentals_tab.Controls.Add(this.dropoffTimeAMPM);
+            this.rentals_tab.Controls.Add(this.dropoffMinute);
+            this.rentals_tab.Controls.Add(this.dropoffHour);
+            this.rentals_tab.Controls.Add(this.dropoffDate);
+            this.rentals_tab.Controls.Add(this.label19);
+            this.rentals_tab.Controls.Add(this.label20);
+            this.rentals_tab.Controls.Add(this.pickupTimeAMPM);
+            this.rentals_tab.Controls.Add(this.pickupMinute);
+            this.rentals_tab.Controls.Add(this.pickupHour);
+            this.rentals_tab.Controls.Add(this.pickupDate);
+            this.rentals_tab.Controls.Add(this.label18);
+            this.rentals_tab.Controls.Add(this.label15);
+            this.rentals_tab.Controls.Add(this.label14);
+            this.rentals_tab.Controls.Add(this.dropoffbranchBox);
+            this.rentals_tab.Controls.Add(this.label13);
+            this.rentals_tab.Controls.Add(this.pickupbranchBox);
+            this.rentals_tab.Controls.Add(this.label12);
+            this.rentals_tab.Controls.Add(this.TransactionID);
+            this.rentals_tab.Controls.Add(this.label11);
+            this.rentals_tab.Location = new System.Drawing.Point(8, 39);
+            this.rentals_tab.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.rentals_tab.Name = "rentals_tab";
+            this.rentals_tab.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.rentals_tab.Size = new System.Drawing.Size(1572, 1025);
+            this.rentals_tab.TabIndex = 2;
+            this.rentals_tab.Text = "Rentals";
             // 
             // monthly_rate
             // 
@@ -967,7 +978,6 @@
             this.available_car.Name = "available_car";
             this.available_car.Size = new System.Drawing.Size(364, 33);
             this.available_car.TabIndex = 51;
-            this.available_car.SelectedIndexChanged += new System.EventHandler(this.available_car_SelectedIndexChanged);
             // 
             // label63
             // 
@@ -999,7 +1009,6 @@
             this.label41.Size = new System.Drawing.Size(249, 25);
             this.label41.TabIndex = 48;
             this.label41.Text = "*Late fee if applicable:";
-  
             // 
             // label40
             // 
@@ -1494,40 +1503,40 @@
             this.label11.Text = "Transaction ID";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // tabPage1
+            // car_tab
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.LightCyan;
-            this.tabPage1.Controls.Add(this.checkBox3);
-            this.tabPage1.Controls.Add(this.CCarType);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.AddCar);
-            this.tabPage1.Controls.Add(this.CInsurance);
-            this.tabPage1.Controls.Add(this.Color);
-            this.tabPage1.Controls.Add(this.CBID);
-            this.tabPage1.Controls.Add(this.Odometer);
-            this.tabPage1.Controls.Add(this.label36);
-            this.tabPage1.Controls.Add(this.label35);
-            this.tabPage1.Controls.Add(this.label34);
-            this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.label32);
-            this.tabPage1.Controls.Add(this.Seats);
-            this.tabPage1.Controls.Add(this.Year);
-            this.tabPage1.Controls.Add(this.Model);
-            this.tabPage1.Controls.Add(this.Make);
-            this.tabPage1.Controls.Add(this.VIN);
-            this.tabPage1.Controls.Add(this.label31);
-            this.tabPage1.Controls.Add(this.label30);
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.label26);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1572, 1025);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Car";
+            this.car_tab.BackColor = System.Drawing.Color.LightCyan;
+            this.car_tab.Controls.Add(this.checkBox3);
+            this.car_tab.Controls.Add(this.CCarType);
+            this.car_tab.Controls.Add(this.button5);
+            this.car_tab.Controls.Add(this.button4);
+            this.car_tab.Controls.Add(this.AddCar);
+            this.car_tab.Controls.Add(this.CInsurance);
+            this.car_tab.Controls.Add(this.Color);
+            this.car_tab.Controls.Add(this.CBID);
+            this.car_tab.Controls.Add(this.Odometer);
+            this.car_tab.Controls.Add(this.label36);
+            this.car_tab.Controls.Add(this.label35);
+            this.car_tab.Controls.Add(this.label34);
+            this.car_tab.Controls.Add(this.label33);
+            this.car_tab.Controls.Add(this.label32);
+            this.car_tab.Controls.Add(this.Seats);
+            this.car_tab.Controls.Add(this.Year);
+            this.car_tab.Controls.Add(this.Model);
+            this.car_tab.Controls.Add(this.Make);
+            this.car_tab.Controls.Add(this.VIN);
+            this.car_tab.Controls.Add(this.label31);
+            this.car_tab.Controls.Add(this.label30);
+            this.car_tab.Controls.Add(this.label28);
+            this.car_tab.Controls.Add(this.label26);
+            this.car_tab.Controls.Add(this.label22);
+            this.car_tab.Location = new System.Drawing.Point(8, 39);
+            this.car_tab.Margin = new System.Windows.Forms.Padding(6);
+            this.car_tab.Name = "car_tab";
+            this.car_tab.Padding = new System.Windows.Forms.Padding(6);
+            this.car_tab.Size = new System.Drawing.Size(1572, 1025);
+            this.car_tab.TabIndex = 3;
+            this.car_tab.Text = "Car";
             // 
             // checkBox3
             // 
@@ -1774,33 +1783,33 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "VIN";
             // 
-            // tabPage2
+            // car_type_tab
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tabPage2.Controls.Add(this.button6);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.label37);
-            this.tabPage2.Controls.Add(this.label38);
-            this.tabPage2.Controls.Add(this.label39);
-            this.tabPage2.Controls.Add(this.label42);
-            this.tabPage2.Controls.Add(this.button9);
-            this.tabPage2.Controls.Add(this.DailyRate);
-            this.tabPage2.Controls.Add(this.WeeklyRate);
-            this.tabPage2.Controls.Add(this.MonthlyRate);
-            this.tabPage2.Controls.Add(this.CTCarDescription);
-            this.tabPage2.Controls.Add(this.CTCarType);
-            this.tabPage2.Controls.Add(this.label43);
-            this.tabPage2.Controls.Add(this.label44);
-            this.tabPage2.Controls.Add(this.label45);
-            this.tabPage2.Controls.Add(this.label46);
-            this.tabPage2.Controls.Add(this.label47);
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(1572, 1025);
-            this.tabPage2.TabIndex = 4;
-            this.tabPage2.Text = "Car Type";
+            this.car_type_tab.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.car_type_tab.Controls.Add(this.button6);
+            this.car_type_tab.Controls.Add(this.checkBox1);
+            this.car_type_tab.Controls.Add(this.label37);
+            this.car_type_tab.Controls.Add(this.label38);
+            this.car_type_tab.Controls.Add(this.label39);
+            this.car_type_tab.Controls.Add(this.label42);
+            this.car_type_tab.Controls.Add(this.button9);
+            this.car_type_tab.Controls.Add(this.DailyRate);
+            this.car_type_tab.Controls.Add(this.WeeklyRate);
+            this.car_type_tab.Controls.Add(this.MonthlyRate);
+            this.car_type_tab.Controls.Add(this.CTCarDescription);
+            this.car_type_tab.Controls.Add(this.CTCarType);
+            this.car_type_tab.Controls.Add(this.label43);
+            this.car_type_tab.Controls.Add(this.label44);
+            this.car_type_tab.Controls.Add(this.label45);
+            this.car_type_tab.Controls.Add(this.label46);
+            this.car_type_tab.Controls.Add(this.label47);
+            this.car_type_tab.Location = new System.Drawing.Point(8, 39);
+            this.car_type_tab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.car_type_tab.Name = "car_type_tab";
+            this.car_type_tab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.car_type_tab.Size = new System.Drawing.Size(1572, 1025);
+            this.car_type_tab.TabIndex = 4;
+            this.car_type_tab.Text = "Car Type";
             // 
             // button6
             // 
@@ -1987,27 +1996,27 @@
             this.label47.TabIndex = 55;
             this.label47.Text = "Update Rate";
             // 
-            // tabPage3
+            // stats_tab
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPage3.Controls.Add(this.checkBox4);
-            this.tabPage3.Controls.Add(this.Report);
-            this.tabPage3.Controls.Add(this.label52);
-            this.tabPage3.Controls.Add(this.dateTimePicker2);
-            this.tabPage3.Controls.Add(this.dateTimePicker1);
-            this.tabPage3.Controls.Add(this.label51);
-            this.tabPage3.Controls.Add(this.label50);
-            this.tabPage3.Controls.Add(this.label49);
-            this.tabPage3.Controls.Add(this.comboBox3);
-            this.tabPage3.Controls.Add(this.chart1);
-            this.tabPage3.Controls.Add(this.label48);
-            this.tabPage3.Location = new System.Drawing.Point(8, 39);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage3.Size = new System.Drawing.Size(1572, 1025);
-            this.tabPage3.TabIndex = 5;
-            this.tabPage3.Text = "Statistics";
+            this.stats_tab.BackColor = System.Drawing.Color.Gainsboro;
+            this.stats_tab.Controls.Add(this.checkBox4);
+            this.stats_tab.Controls.Add(this.Report);
+            this.stats_tab.Controls.Add(this.label52);
+            this.stats_tab.Controls.Add(this.dateTimePicker2);
+            this.stats_tab.Controls.Add(this.dateTimePicker1);
+            this.stats_tab.Controls.Add(this.label51);
+            this.stats_tab.Controls.Add(this.label50);
+            this.stats_tab.Controls.Add(this.label49);
+            this.stats_tab.Controls.Add(this.comboBox3);
+            this.stats_tab.Controls.Add(this.chart1);
+            this.stats_tab.Controls.Add(this.label48);
+            this.stats_tab.Location = new System.Drawing.Point(8, 39);
+            this.stats_tab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.stats_tab.Name = "stats_tab";
+            this.stats_tab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.stats_tab.Size = new System.Drawing.Size(1572, 1025);
+            this.stats_tab.TabIndex = 5;
+            this.stats_tab.Text = "Statistics";
             // 
             // checkBox4
             // 
@@ -2133,6 +2142,30 @@
             this.label48.TabIndex = 0;
             this.label48.Text = "Pick a statistic";
             // 
+            // _291_group2DataSet
+            // 
+            this._291_group2DataSet.DataSetName = "_291_group2DataSet";
+            this._291_group2DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // group2DataSetBindingSource
+            // 
+            this.group2DataSetBindingSource.DataSource = this._291_group2DataSet;
+            this.group2DataSetBindingSource.Position = 0;
+            // 
+            // carBindingSource
+            // 
+            this.carBindingSource.DataMember = "Car";
+            this.carBindingSource.DataSource = this.group2DataSetBindingSource;
+            // 
+            // carTableAdapter
+            // 
+            this.carTableAdapter.ClearBeforeFill = true;
+            // 
+            // carBindingSource1
+            // 
+            this.carBindingSource1.DataMember = "Car";
+            this.carBindingSource1.DataSource = this.group2DataSetBindingSource;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -2148,19 +2181,23 @@
             this.Customers.PerformLayout();
             this.Branch.ResumeLayout(false);
             this.Branch.PerformLayout();
-            this.DisplayButton.ResumeLayout(false);
-            this.DisplayButton.PerformLayout();
+            this.rentals_tab.ResumeLayout(false);
+            this.rentals_tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dropoffMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dropoffHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickupMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pickupHour)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.car_tab.ResumeLayout(false);
+            this.car_tab.PerformLayout();
+            this.car_type_tab.ResumeLayout(false);
+            this.car_type_tab.PerformLayout();
+            this.stats_tab.ResumeLayout(false);
+            this.stats_tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._291_group2DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.group2DataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2171,7 +2208,7 @@
         private System.Windows.Forms.TabPage Customers;
         private System.Windows.Forms.Label FNameLabel;
         private System.Windows.Forms.TabPage Branch;
-        private System.Windows.Forms.TabPage DisplayButton;
+        private System.Windows.Forms.TabPage rentals_tab;
         private System.Windows.Forms.TextBox StreetAddress2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox StreetAddress1;
@@ -2257,7 +2294,7 @@
         private System.Windows.Forms.Label displaydbranch;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox dropoffTimeAMPM;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage car_tab;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button AddCar;
@@ -2280,7 +2317,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage car_type_tab;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
@@ -2296,7 +2333,7 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage stats_tab;
         private System.Windows.Forms.Button Report;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
@@ -2333,6 +2370,11 @@
         private System.Windows.Forms.Label monthly_rate;
         private System.Windows.Forms.Label weekly_rate;
         private System.Windows.Forms.Label Daily_rate;
+        private System.Windows.Forms.BindingSource group2DataSetBindingSource;
+        private _291_group2DataSet _291_group2DataSet;
+        private System.Windows.Forms.BindingSource carBindingSource;
+        private _291_group2DataSetTableAdapters.CarTableAdapter carTableAdapter;
+        private System.Windows.Forms.BindingSource carBindingSource1;
     }
 }
 
