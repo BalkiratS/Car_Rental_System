@@ -339,13 +339,24 @@ namespace _291_Group2
 
         private void CreateCustomer_Click(object sender, EventArgs e)
         {
+            SqlDataAdapter da = new SqlDataAdapter("Select CID From Customer where CID = '" + CID.Text + "'", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            if (CID.Text == "")
+            {
+                MessageBox.Show("Invalid Customer ID");
+                return;
+            }
+            else if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Customer ID already exists. Choose another.");
+                return;
+            }
+
+
             try
             {   
-                //calculate age
-                DateTime dob = DateTime.Parse(DOB.Text);
-                int age = DateTime.Now.Subtract(dob).Days / 365;
 
-                //
 
                 //check which membership is checked, add to database
                 string membershipText = string.Empty;
@@ -359,7 +370,7 @@ namespace _291_Group2
                     membershipText = MembershipG.Text;
                 }
 
-                myCommand.CommandText = "insert into Customer (CID, Firstname, MiddleName, LastName, Phonenumber, DateofBirth, Street_address1, Street_address2, City, Province, PostalCode, Insurance,Membership) values " +
+                myCommand.CommandText = "insert into Customer (CID, Firstname, MiddleName, LastName, Phonenumber, DateofBirth, Street_address1, Street_address2, City, Province, PostalCode, Insurance,Membership, DriverLicense) values " +
                     "('"  + CID.Text + "'" +
                     ",'" + FName.Text + "'" +
                     ",'" + MName.Text + "'" +
@@ -373,16 +384,18 @@ namespace _291_Group2
                     ",'" + PostalCode.Text + "'" +
                     ",'" + Insurance.Text + "'" +
                     ",'" + membershipText + "'" +
+                    ",'" + DriverLicense.Text + "'" +
                     ")";
 
-                MessageBox.Show(myCommand.CommandText);
-
+                //MessageBox.Show(myCommand.CommandText);
+                MessageBox.Show($"Customer {FName.Text} {LName.Text} created in Customer Table!");
                 myCommand.ExecuteNonQuery();
             }
             catch (Exception e2)
             {
                 MessageBox.Show(e2.ToString(), "Error");
             }
+        }
         }
 
         private void BID_TextChanged(object sender, EventArgs e)
