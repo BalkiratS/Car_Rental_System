@@ -301,23 +301,7 @@ namespace _291_Group2
 
         }
 
-        private void CreateBranch_Click(object sender, EventArgs e)
-        {
-            myCommand.CommandText = "insert into Branch (BID, Description, Street_address1, Street_address2, City, Province, PostalCode, PhoneNumber) values " +
-                    "('" + BID.Text + "'" +
-                    ",'" + BDescription.Text + "'" +
-                    ",'" + BStreet_Address1.Text + "'" +
-                    ",'" + BStreet_Address2.Text + "'" +
-                    ",'" + BCity.Text + "'" +
-                    ",'" + BProvince.Text + "'" +
-                    ",'" + BPostalCode.Text + "'" +
-                    ",'" + BPhoneNumber.Text + "'" +
-                    ")";
-
-            MessageBox.Show(myCommand.CommandText);
-
-            myCommand.ExecuteNonQuery();
-        }
+        
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
