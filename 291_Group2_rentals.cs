@@ -17,6 +17,10 @@ namespace _291_Group2
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
+        
+        //note to include this con connection I have in some of the button codes.
+        
+        public SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=291_group2;Integrated Security=True");
 
         public Form1()
         {
