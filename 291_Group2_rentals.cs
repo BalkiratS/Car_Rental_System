@@ -172,7 +172,7 @@ namespace _291_Group2
 
                 if(int.TryParse(selected_BID, out testing))
                 {
-                    SqlDataAdapter carType_adapter = new SqlDataAdapter("SELECT T.CarTypeID, T.Description from CarType T, Car C WHERE C.CarType = T.CarTypeID and C.BID = " + selected_BID, sqlConnection);
+                    SqlDataAdapter carType_adapter = new SqlDataAdapter("SELECT T.CarTypeID, T.Description from CarType T, Car C WHERE C.CarTypeID = T.CarTypeID and C.BID = " + selected_BID, sqlConnection);
                    
                 
                     DataTable car_type_table = new DataTable();
@@ -214,7 +214,7 @@ namespace _291_Group2
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            CarTypeBox.SelectedValue = 0;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -270,10 +270,51 @@ namespace _291_Group2
 
             float f_price = ((float)months * selected_monthly_rate + (float)weeks * selected_weekly_rate + (float)days * selected_daiy_rate);
             float f_gst = (float)(f_price * 0.05);
-            float f_total = (float)(f_price + f_gst);
+            float f_branch_fee;
+            float f_late_fee = 0;
+            string membership = "Standard";
+
+           
+
+            if (!(Rental_customerID.SelectedValue.ToString().Equals("0")))
+            {
+                
+                using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+                {
+                    string query = "SELECT Membership FROM Customer WHERE CID = " + Rental_customerID.SelectedValue.ToString();
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                      membership = dr.GetString(0);
+                    }
+                }
+            }
+
+            if (pickupbranchBox.SelectedValue.ToString().Equals(dropoffbranchBox.SelectedValue.ToString()) || membership.Equals("Gold"))
+            {
+                f_branch_fee = 0;
+            }
+            else
+            {
+                f_branch_fee = 30;
+            }
+
+            if (dropoffDate.Value < actual_return_date.Value)
+            {
+               TimeSpan t_late_days = actual_return_date.Value - dropoffDate.Value;
+               int late_days = Int32.Parse(t_late_days.Days.ToString()) + 1;
+               f_late_fee = selected_daiy_rate * (float)late_days;
+            }
+
+            float f_total = (float)(f_price + f_gst + f_branch_fee + f_late_fee);
+            
 
             price.Text = "$" + (f_price).ToString(".00#");
             gst.Text = "$" + (f_gst).ToString(".00#");
+            branch_fee.Text = "$" + f_branch_fee.ToString(".00#");
+            late_fee.Text = "$" + f_late_fee.ToString(".00#");
             total_charge.Text = "$" + (f_total).ToString(".00#");
         }
 
@@ -328,7 +369,7 @@ namespace _291_Group2
         private void Form1_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the '_291_group2DataSet.Car' table. You can move, or remove it, as needed.
-            this.carTableAdapter.Fill(this._291_group2DataSet.Car);
+            //this.carTableAdapter.Fill(this._291_group2DataSet.Car.);
 
         }
 
@@ -392,7 +433,7 @@ namespace _291_Group2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            myCommand.CommandText = "insert into Car (VIN, Make, Model, Year, NumberofSeats, Color, InsuranceNumber, OdometerNumber, BID, CarType) values " +
+            myCommand.CommandText = "insert into Car (VIN, Make, Model, Year, NumberofSeats, Color, InsuranceNumber, OdometerNumber, BID, CarTypeID) values " +
                     "('" + VIN.Text + "'" +
                     ",'" + Make.Text + "'" +
                     ",'" + Model.Text + "'" +
@@ -429,11 +470,31 @@ namespace _291_Group2
 
                 if (int.TryParse(selected_CarType, out testing))
                 {
-                    SqlDataAdapter car_adapter = new SqlDataAdapter("SELECT VIN, (Make + ' ' + Model) as car_info from Car WHERE CarType = " + selected_CarType + " and BID = " + selected_BID, sqlConnection);
+                    SqlDataAdapter car_adapter = new SqlDataAdapter("SELECT VIN, (Make + ' ' + Model) as car_info from Car WHERE CarTypeID = " + selected_CarType + " and BID = " + selected_BID, sqlConnection);
 
 
                     DataTable car_table = new DataTable();
                     car_adapter.Fill(car_table);
+
+                    foreach (DataRow r in car_table.Select())
+                    {
+                        String q = "Select VIN, PickupDate, ReturnDate from Rentals WHERE VIN = " + r[0];
+                        sqlConnection.Open();
+                        SqlCommand cmd1 = new SqlCommand(q, sqlConnection);
+                        SqlDataReader dr1 = cmd1.ExecuteReader();
+                        while (dr1.Read())
+                        {
+                           if (pickupDate.Value <= dr1.GetDateTime(2) && pickupDate.Value >= dr1.GetDateTime(1))
+                            {
+                                r.Delete();
+                            }
+                            else if (dropoffDate.Value <= dr1.GetDateTime(2) && dropoffDate.Value >= dr1.GetDateTime(1))
+                            {
+                                r.Delete();
+                            }
+                        }
+                        dr1.Close();
+                    }
 
                     DataRow car_defalut = car_table.NewRow();
 
@@ -447,16 +508,20 @@ namespace _291_Group2
 
                     //--------display rates of selected car type-----------
                     string query = "SELECT DailyRate, WeeklyRate, MonthlyRate FROM CarType WHERE CarTypeID = " + selected_CarType;
-                    sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
 
+                    if (sqlConnection.State != ConnectionState.Open)
+                    {
+                        sqlConnection.Open();
+                    }
+                    
+                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        Daily_rate.Text = "$" + dr.GetString(0);
-                        weekly_rate.Text = "$" + dr.GetString(1);
-                        monthly_rate.Text = "$" + dr.GetString(2);
+                        Daily_rate.Text = "$" + dr.GetDecimal(0).ToString();
+                        weekly_rate.Text = "$" + dr.GetDecimal(1).ToString();
+                        monthly_rate.Text = "$" + dr.GetDecimal(2).ToString();
                     }
                 }
 
@@ -498,6 +563,21 @@ namespace _291_Group2
                     dropoffbranchBox.DisplayMember = "Location";
                     dropoffbranchBox.ValueMember = "BID";
                     //--------------------------------------------
+
+                    //----------rentals customer box-----------------
+                    SqlDataAdapter rental_customer_adapter = new SqlDataAdapter("Select CID, (CAST(CID AS varchar) + '. ' + FirstName + ' ' + LastName) AS Customer_info FROM Customer", sqlConnection);
+                    DataTable dt2 = new DataTable();
+                    rental_customer_adapter.Fill(dt2);
+
+                    DataRow row2 = dt2.NewRow();
+                    row2[0] = 0;
+                    row2[1] = "Please select";
+
+                    dt2.Rows.InsertAt(row2, 0);
+                    Rental_customerID.DataSource = dt2;
+                    Rental_customerID.DisplayMember = "Customer_info";
+                    Rental_customerID.ValueMember = "CID";
+
                 }
             }
 
@@ -524,5 +604,85 @@ namespace _291_Group2
             }
         }
 
+        private void Rent_button_Click(object sender, EventArgs e)
+        {
+
+            if (TransactionID.Text.ToString().Length > 0 && int.Parse(Rental_customerID.SelectedValue.ToString()) != 0 && int.Parse(pickupbranchBox.SelectedValue.ToString()) != 0 && int.Parse(dropoffbranchBox.SelectedValue.ToString()) != 0 && int.Parse(CarTypeBox.SelectedValue.ToString()) != 0 && int.Parse(available_car.SelectedValue.ToString()) != 0)
+            {
+                button1.PerformClick();
+
+                myCommand.CommandText = "insert into Rentals (TID, PickupDate, ReturnDate, CID, VIN, PickupBID, ReturnBID, RentValueTotal) values " +
+                    "(" + TransactionID.Text + "" +
+                    ",'" + pickupDate.Value.ToShortDateString() + "'" +
+                    ",'" + dropoffDate.Value.ToShortDateString() +
+                    "'," + Rental_customerID.SelectedValue.ToString() + 
+                    "," + available_car.SelectedValue.ToString() + 
+                    "," + pickupbranchBox.SelectedValue.ToString() +
+                    "," + dropoffbranchBox.SelectedValue.ToString() +
+                    "," + Convert.ToDecimal(total_charge.Text.Replace("$", "")) +
+                    ")";
+
+                MessageBox.Show(myCommand.CommandText);
+
+                myCommand.ExecuteNonQuery();
+
+                if (!(pickupbranchBox.SelectedValue.ToString().Equals(dropoffbranchBox.SelectedValue.ToString())))
+                {
+                    myCommand.CommandText = "UPDATE Car Set BID = " + dropoffbranchBox.SelectedValue.ToString() + " WHERE VIN = " + available_car.SelectedValue.ToString();
+                    myCommand.ExecuteNonQuery();
+                }
+                string membership = "Standard";
+
+                using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+                {
+                    string query = "SELECT Membership FROM Customer WHERE CID = " + Rental_customerID.SelectedValue.ToString();
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        membership = dr.GetString(0);
+                    }
+                }
+
+                if (membership.Equals("Standard"))
+                {
+                    Set_membership();
+                }
+
+
+            }
+        }
+
+        private void Set_membership()
+        {
+            string year = pickupDate.Value.ToString("yyyy");
+            string CID = Rental_customerID.SelectedValue.ToString();
+            int rental_count = 0;
+
+            using (SqlConnection sqlConnection = new SqlConnection("Server = BALKIRATS-SURFA; Database = 291_group2; Trusted_Connection = yes;"))
+            {
+                string query = $"SELECT count(*) AS Rental_count FROM (select CID, YEAR(pickupDate) AS Year FROM Rentals WHERE CID = {CID}) R WHERE R.Year = {pickupDate.Value.ToString("yyyy")}";
+                sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand(query, sqlConnection);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    rental_count = dr.GetInt32(0);
+                }
+            }
+
+            if (rental_count >= 3)
+            {
+                myCommand.CommandText = "UPDATE Customer Set Membership = 'Gold' WHERE CID =" + CID;
+                myCommand.ExecuteNonQuery();
+                MessageBox.Show("Congratulations! You have been awared Gold Memebership");
+            }
+        }
+
+        private void dropoffDate_ValueChanged(object sender, EventArgs e)
+        {
+            CarTypeBox.SelectedValue = 0;
+        }
     }
 }

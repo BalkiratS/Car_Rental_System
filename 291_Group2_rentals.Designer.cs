@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Rentals = new System.Windows.Forms.TabControl();
             this.Customers = new System.Windows.Forms.TabPage();
             this.Province = new System.Windows.Forms.TextBox();
@@ -88,6 +88,8 @@
             this.BDescription = new System.Windows.Forms.TextBox();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.rentals_tab = new System.Windows.Forms.TabPage();
+            this.Rental_customerID = new System.Windows.Forms.ComboBox();
+            this.label54 = new System.Windows.Forms.Label();
             this.monthly_rate = new System.Windows.Forms.Label();
             this.weekly_rate = new System.Windows.Forms.Label();
             this.Daily_rate = new System.Windows.Forms.Label();
@@ -95,7 +97,7 @@
             this.label64 = new System.Windows.Forms.Label();
             this.available_car = new System.Windows.Forms.ComboBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
+            this.late_fee = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.gst = new System.Windows.Forms.Label();
@@ -120,7 +122,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.displaypbranch = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Rent_button = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -203,6 +205,10 @@
             this.carBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.carTableAdapter = new _291_Group2._291_group2DataSetTableAdapters.CarTableAdapter();
             this.carBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label58 = new System.Windows.Forms.Label();
+            this.actual_return_date = new System.Windows.Forms.DateTimePicker();
+            this.label61 = new System.Windows.Forms.Label();
+            this.branch_fee = new System.Windows.Forms.Label();
             this.Rentals.SuspendLayout();
             this.Customers.SuspendLayout();
             this.Branch.SuspendLayout();
@@ -855,6 +861,12 @@
             // rentals_tab
             // 
             this.rentals_tab.BackColor = System.Drawing.Color.PowderBlue;
+            this.rentals_tab.Controls.Add(this.branch_fee);
+            this.rentals_tab.Controls.Add(this.label61);
+            this.rentals_tab.Controls.Add(this.actual_return_date);
+            this.rentals_tab.Controls.Add(this.label58);
+            this.rentals_tab.Controls.Add(this.Rental_customerID);
+            this.rentals_tab.Controls.Add(this.label54);
             this.rentals_tab.Controls.Add(this.monthly_rate);
             this.rentals_tab.Controls.Add(this.weekly_rate);
             this.rentals_tab.Controls.Add(this.Daily_rate);
@@ -862,7 +874,7 @@
             this.rentals_tab.Controls.Add(this.label64);
             this.rentals_tab.Controls.Add(this.available_car);
             this.rentals_tab.Controls.Add(this.label63);
-            this.rentals_tab.Controls.Add(this.label62);
+            this.rentals_tab.Controls.Add(this.late_fee);
             this.rentals_tab.Controls.Add(this.label41);
             this.rentals_tab.Controls.Add(this.label40);
             this.rentals_tab.Controls.Add(this.gst);
@@ -887,7 +899,7 @@
             this.rentals_tab.Controls.Add(this.label23);
             this.rentals_tab.Controls.Add(this.displaypbranch);
             this.rentals_tab.Controls.Add(this.label21);
-            this.rentals_tab.Controls.Add(this.button2);
+            this.rentals_tab.Controls.Add(this.Rent_button);
             this.rentals_tab.Controls.Add(this.label17);
             this.rentals_tab.Controls.Add(this.label16);
             this.rentals_tab.Controls.Add(this.button1);
@@ -917,6 +929,26 @@
             this.rentals_tab.Size = new System.Drawing.Size(1572, 1025);
             this.rentals_tab.TabIndex = 2;
             this.rentals_tab.Text = "Rentals";
+            // 
+            // Rental_customerID
+            // 
+            this.Rental_customerID.FormattingEnabled = true;
+            this.Rental_customerID.Location = new System.Drawing.Point(1101, 36);
+            this.Rental_customerID.Margin = new System.Windows.Forms.Padding(6);
+            this.Rental_customerID.Name = "Rental_customerID";
+            this.Rental_customerID.Size = new System.Drawing.Size(306, 33);
+            this.Rental_customerID.TabIndex = 59;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Location = new System.Drawing.Point(903, 36);
+            this.label54.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(168, 30);
+            this.label54.TabIndex = 57;
+            this.label54.Text = "Customer ID";
             // 
             // monthly_rate
             // 
@@ -989,21 +1021,21 @@
             this.label63.TabIndex = 50;
             this.label63.Text = "Choose from available Cars";
             // 
-            // label62
+            // late_fee
             // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(1442, 624);
-            this.label62.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(71, 25);
-            this.label62.TabIndex = 49;
-            this.label62.Text = "$0.00";
+            this.late_fee.AutoSize = true;
+            this.late_fee.Location = new System.Drawing.Point(1442, 609);
+            this.late_fee.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.late_fee.Name = "late_fee";
+            this.late_fee.Size = new System.Drawing.Size(71, 25);
+            this.late_fee.TabIndex = 49;
+            this.late_fee.Text = "$0.00";
             // 
             // label41
             // 
             this.label41.AutoSize = true;
             this.label41.ForeColor = System.Drawing.Color.Red;
-            this.label41.Location = new System.Drawing.Point(1150, 624);
+            this.label41.Location = new System.Drawing.Point(1150, 609);
             this.label41.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(249, 25);
@@ -1023,7 +1055,7 @@
             // gst
             // 
             this.gst.AutoSize = true;
-            this.gst.Location = new System.Drawing.Point(1442, 586);
+            this.gst.Location = new System.Drawing.Point(1442, 571);
             this.gst.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.gst.Name = "gst";
             this.gst.Size = new System.Drawing.Size(71, 25);
@@ -1034,7 +1066,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.Color.Red;
-            this.label60.Location = new System.Drawing.Point(1335, 586);
+            this.label60.Location = new System.Drawing.Point(1335, 571);
             this.label60.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(65, 25);
@@ -1044,7 +1076,7 @@
             // price
             // 
             this.price.AutoSize = true;
-            this.price.Location = new System.Drawing.Point(1442, 548);
+            this.price.Location = new System.Drawing.Point(1442, 533);
             this.price.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.price.Name = "price";
             this.price.Size = new System.Drawing.Size(71, 25);
@@ -1055,7 +1087,7 @@
             // 
             this.label59.AutoSize = true;
             this.label59.ForeColor = System.Drawing.Color.Red;
-            this.label59.Location = new System.Drawing.Point(981, 548);
+            this.label59.Location = new System.Drawing.Point(981, 533);
             this.label59.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(419, 25);
@@ -1088,7 +1120,7 @@
             // total_charge
             // 
             this.total_charge.AutoSize = true;
-            this.total_charge.Location = new System.Drawing.Point(1442, 662);
+            this.total_charge.Location = new System.Drawing.Point(1442, 685);
             this.total_charge.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.total_charge.Name = "total_charge";
             this.total_charge.Size = new System.Drawing.Size(71, 25);
@@ -1099,7 +1131,7 @@
             // 
             this.label55.AutoSize = true;
             this.label55.ForeColor = System.Drawing.Color.Red;
-            this.label55.Location = new System.Drawing.Point(1250, 662);
+            this.label55.Location = new System.Drawing.Point(1250, 685);
             this.label55.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(151, 25);
@@ -1261,15 +1293,16 @@
             this.label21.TabIndex = 25;
             this.label21.Text = "Pickup branch:";
             // 
-            // button2
+            // Rent_button
             // 
-            this.button2.Location = new System.Drawing.Point(1250, 828);
-            this.button2.Margin = new System.Windows.Forms.Padding(6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(276, 114);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Rent";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Rent_button.Location = new System.Drawing.Point(1250, 828);
+            this.Rent_button.Margin = new System.Windows.Forms.Padding(6);
+            this.Rent_button.Name = "Rent_button";
+            this.Rent_button.Size = new System.Drawing.Size(276, 114);
+            this.Rent_button.TabIndex = 24;
+            this.Rent_button.Text = "Rent";
+            this.Rent_button.UseVisualStyleBackColor = true;
+            this.Rent_button.Click += new System.EventHandler(this.Rent_button_Click);
             // 
             // label17
             // 
@@ -1339,6 +1372,7 @@
             this.dropoffDate.Name = "dropoffDate";
             this.dropoffDate.Size = new System.Drawing.Size(364, 31);
             this.dropoffDate.TabIndex = 17;
+            this.dropoffDate.ValueChanged += new System.EventHandler(this.dropoffDate_ValueChanged);
             // 
             // label19
             // 
@@ -2116,17 +2150,17 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(148, 527);
             this.chart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(651, 420);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -2165,6 +2199,46 @@
             // 
             this.carBindingSource1.DataMember = "Car";
             this.carBindingSource1.DataSource = this.group2DataSetBindingSource;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(696, 757);
+            this.label58.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(247, 30);
+            this.label58.TabIndex = 60;
+            this.label58.Text = "Actual Return Date";
+            // 
+            // actual_return_date
+            // 
+            this.actual_return_date.Location = new System.Drawing.Point(972, 757);
+            this.actual_return_date.Margin = new System.Windows.Forms.Padding(6);
+            this.actual_return_date.Name = "actual_return_date";
+            this.actual_return_date.Size = new System.Drawing.Size(364, 31);
+            this.actual_return_date.TabIndex = 61;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.ForeColor = System.Drawing.Color.Red;
+            this.label61.Location = new System.Drawing.Point(1083, 647);
+            this.label61.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(316, 25);
+            this.label61.TabIndex = 62;
+            this.label61.Text = "*Different Return Branch fee:";
+            // 
+            // branch_fee
+            // 
+            this.branch_fee.AutoSize = true;
+            this.branch_fee.Location = new System.Drawing.Point(1442, 647);
+            this.branch_fee.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.branch_fee.Name = "branch_fee";
+            this.branch_fee.Size = new System.Drawing.Size(71, 25);
+            this.branch_fee.TabIndex = 63;
+            this.branch_fee.Text = "$0.00";
             // 
             // Form1
             // 
@@ -2281,7 +2355,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label displaypbranch;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Rent_button;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label displayptime;
         private System.Windows.Forms.Label label25;
@@ -2357,7 +2431,7 @@
         private System.Windows.Forms.Label gst;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label late_fee;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.CheckBox checkBox3;
@@ -2375,6 +2449,12 @@
         private System.Windows.Forms.BindingSource carBindingSource;
         private _291_group2DataSetTableAdapters.CarTableAdapter carTableAdapter;
         private System.Windows.Forms.BindingSource carBindingSource1;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.ComboBox Rental_customerID;
+        private System.Windows.Forms.DateTimePicker actual_return_date;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label branch_fee;
+        private System.Windows.Forms.Label label61;
     }
 }
 
