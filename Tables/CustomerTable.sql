@@ -1,7 +1,7 @@
 USE [291_group2]
 GO
 
-/****** Object:  Table [dbo].[Customer]    Script Date: 25-Mar-2022 7:33:07 PM ******/
+/****** Object:  Table [dbo].[Customer]    Script Date: 07-Apr-2022 4:07:20 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Customer](
-	[CID] [varchar](50) NOT NULL,
+	[CID] [int] NOT NULL,
 	[FirstName] [varchar](50) NULL,
 	[MiddleName] [varchar](50) NULL,
 	[LastName] [varchar](50) NULL,
