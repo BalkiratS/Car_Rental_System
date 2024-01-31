@@ -14,12 +14,33 @@ This document provides an overview of the Car Rental System application, a softw
 
 The application is divided into 7 tabs:
 - **Customers:** Manage customer information, including personal details, contact information, and rental history.
+  
+  <img src="Screenshots/customers.png" alt="Screenshot 1" width="700"/>
+  
 - **Branches:** Manage branch information, including location details and available car types.
+  
+  <img src="Screenshots/branch.png" alt="Screenshot 2" width="700"/>
+  
 - **Rentals:** Process rental transactions, including selecting vehicles, specifying dates, applying fees, and managing returns.
+  
+  <img src="Screenshots/rentals.png" alt="Screenshot 3" width="700"/>
+  
 - **Cars:** Manage vehicle information, including VIN number, car type, branch location, and availability.
+  
+  <img src="Screenshots/car.png" alt="Screenshot 4" width="700"/>
+
 - **Car Types:** Define different car types, associate descriptions, and set daily, weekly, and monthly rental rates.
+  
+  <img src="Screenshots/car_type.png" alt="Screenshot 2" width="700"/>
+
+- **Rental Search:** Get Details like Car Info, Customer Info, and rental dates by searching the transactions.
+  
+  <img src="Screenshots/rental_search.png" alt="Screenshot 2" width="700"/>
+
 - **Reports:** View reports on past rental transactions, revenue generated, and customer activity.
-- **Settings:** Configure system preferences, user accounts, and other application settings.
+  
+  <img src="Screenshots/staistics.png" alt="Screenshot 2" width="700"/>
+
 
 ## Using the Application
 
